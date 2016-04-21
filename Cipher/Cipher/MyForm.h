@@ -1,7 +1,10 @@
 #pragma once
+#include "VigError.h"
+#include<string>
 
 namespace Cipher {
 
+	using namespace std;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -39,21 +42,25 @@ namespace Cipher {
 	protected:
 
 	private: System::Windows::Forms::Label^  label1;
-	private: System::Windows::Forms::TextBox^  Input;
+
 
 	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::TextBox^  textBox1;
+
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::RadioButton^  Caesar;
 
 	private: System::Windows::Forms::Label^  label4;
-	private: System::Windows::Forms::TextBox^  Shift;
+
 
 	private:
 
 
 	private: System::Windows::Forms::ComboBox^  Direction;
 	private: System::Windows::Forms::Button^  Encrypt;
+	private: System::Windows::Forms::TextBox^  Input;
+	private: System::Windows::Forms::TextBox^  Shift;
+	private: System::Windows::Forms::TextBox^  Output;
+
 
 
 
@@ -75,24 +82,23 @@ namespace Cipher {
 			this->Vigenere = (gcnew System::Windows::Forms::RadioButton());
 			this->KeyWord = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->Input = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->Caesar = (gcnew System::Windows::Forms::RadioButton());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->Shift = (gcnew System::Windows::Forms::TextBox());
 			this->Direction = (gcnew System::Windows::Forms::ComboBox());
 			this->Encrypt = (gcnew System::Windows::Forms::Button());
+			this->Input = (gcnew System::Windows::Forms::TextBox());
+			this->Shift = (gcnew System::Windows::Forms::TextBox());
+			this->Output = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// Vigenere
 			// 
 			this->Vigenere->AutoSize = true;
-			this->Vigenere->Location = System::Drawing::Point(573, 603);
-			this->Vigenere->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Vigenere->Location = System::Drawing::Point(382, 392);
 			this->Vigenere->Name = L"Vigenere";
-			this->Vigenere->Size = System::Drawing::Size(160, 24);
+			this->Vigenere->Size = System::Drawing::Size(108, 17);
 			this->Vigenere->TabIndex = 0;
 			this->Vigenere->TabStop = true;
 			this->Vigenere->Text = L"Шифр Виженера";
@@ -101,68 +107,44 @@ namespace Cipher {
 			// 
 			// KeyWord
 			// 
-			this->KeyWord->Location = System::Drawing::Point(540, 665);
-			this->KeyWord->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->KeyWord->Location = System::Drawing::Point(360, 432);
 			this->KeyWord->Name = L"KeyWord";
-			this->KeyWord->Size = System::Drawing::Size(217, 26);
+			this->KeyWord->Size = System::Drawing::Size(146, 20);
 			this->KeyWord->TabIndex = 1;
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(392, 669);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(261, 435);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(139, 20);
+			this->label1->Size = System::Drawing::Size(93, 13);
 			this->label1->TabIndex = 2;
 			this->label1->Text = L"Ключевое слово:";
-			// 
-			// Input
-			// 
-			this->Input->Location = System::Drawing::Point(72, 88);
-			this->Input->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->Input->Multiline = true;
-			this->Input->Name = L"Input";
-			this->Input->Size = System::Drawing::Size(661, 178);
-			this->Input->TabIndex = 3;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(68, 43);
-			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label2->Location = System::Drawing::Point(45, 28);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(194, 20);
+			this->label2->Size = System::Drawing::Size(128, 13);
 			this->label2->TabIndex = 4;
 			this->label2->Text = L"Текст для шифрования:";
-			// 
-			// textBox1
-			// 
-			this->textBox1->Location = System::Drawing::Point(72, 369);
-			this->textBox1->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->textBox1->Multiline = true;
-			this->textBox1->Name = L"textBox1";
-			this->textBox1->ReadOnly = true;
-			this->textBox1->Size = System::Drawing::Size(661, 178);
-			this->textBox1->TabIndex = 5;
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(68, 326);
-			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Location = System::Drawing::Point(45, 212);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(191, 20);
+			this->label3->Size = System::Drawing::Size(126, 13);
 			this->label3->TabIndex = 6;
 			this->label3->Text = L"Зашифрованный текст:";
 			// 
 			// Caesar
 			// 
 			this->Caesar->AutoSize = true;
-			this->Caesar->Location = System::Drawing::Point(72, 603);
-			this->Caesar->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Caesar->Location = System::Drawing::Point(48, 392);
 			this->Caesar->Name = L"Caesar";
-			this->Caesar->Size = System::Drawing::Size(140, 24);
+			this->Caesar->Size = System::Drawing::Size(95, 17);
 			this->Caesar->TabIndex = 7;
 			this->Caesar->TabStop = true;
 			this->Caesar->Text = L"Шифр Цезаря";
@@ -172,67 +154,79 @@ namespace Cipher {
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(33, 669);
-			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label4->Location = System::Drawing::Point(22, 435);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(60, 20);
+			this->label4->Size = System::Drawing::Size(40, 13);
 			this->label4->TabIndex = 8;
 			this->label4->Text = L"Сдвиг:";
-			// 
-			// Shift
-			// 
-			this->Shift->Location = System::Drawing::Point(102, 665);
-			this->Shift->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
-			this->Shift->Name = L"Shift";
-			this->Shift->Size = System::Drawing::Size(70, 26);
-			this->Shift->TabIndex = 9;
 			// 
 			// Direction
 			// 
 			this->Direction->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->Direction->FormattingEnabled = true;
 			this->Direction->Items->AddRange(gcnew cli::array< System::Object^  >(2) { L"влево", L"вправо" });
-			this->Direction->Location = System::Drawing::Point(226, 665);
-			this->Direction->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Direction->Location = System::Drawing::Point(151, 432);
 			this->Direction->Name = L"Direction";
-			this->Direction->Size = System::Drawing::Size(91, 28);
+			this->Direction->Size = System::Drawing::Size(62, 21);
 			this->Direction->TabIndex = 10;
-			this->Direction->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::Direction_SelectedIndexChanged);
 			// 
 			// Encrypt
 			// 
-			this->Encrypt->Location = System::Drawing::Point(279, 740);
-			this->Encrypt->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
+			this->Encrypt->Location = System::Drawing::Point(186, 481);
 			this->Encrypt->Name = L"Encrypt";
-			this->Encrypt->Size = System::Drawing::Size(252, 68);
+			this->Encrypt->Size = System::Drawing::Size(168, 44);
 			this->Encrypt->TabIndex = 11;
 			this->Encrypt->Text = L"Шифровать";
 			this->Encrypt->UseVisualStyleBackColor = true;
 			this->Encrypt->Click += gcnew System::EventHandler(this, &MyForm::Encrypt_Click);
 			// 
+			// Input
+			// 
+			this->Input->Location = System::Drawing::Point(48, 57);
+			this->Input->Multiline = true;
+			this->Input->Name = L"Input";
+			this->Input->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
+			this->Input->Size = System::Drawing::Size(442, 117);
+			this->Input->TabIndex = 3;
+			// 
+			// Shift
+			// 
+			this->Shift->Location = System::Drawing::Point(68, 432);
+			this->Shift->Name = L"Shift";
+			this->Shift->Size = System::Drawing::Size(48, 20);
+			this->Shift->TabIndex = 12;
+			// 
+			// Output
+			// 
+			this->Output->Location = System::Drawing::Point(48, 246);
+			this->Output->Multiline = true;
+			this->Output->Name = L"Output";
+			this->Output->ReadOnly = true;
+			this->Output->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
+			this->Output->Size = System::Drawing::Size(442, 117);
+			this->Output->TabIndex = 13;
+			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 20);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(808, 838);
+			this->ClientSize = System::Drawing::Size(539, 574);
+			this->Controls->Add(this->Output);
+			this->Controls->Add(this->Shift);
 			this->Controls->Add(this->Encrypt);
 			this->Controls->Add(this->Direction);
-			this->Controls->Add(this->Shift);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->Caesar);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->Input);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->KeyWord);
 			this->Controls->Add(this->Vigenere);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedDialog;
-			this->Margin = System::Windows::Forms::Padding(4, 5, 4, 5);
 			this->MaximizeBox = false;
 			this->MinimizeBox = false;
 			this->Name = L"MyForm";
-			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Шифратор";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResumeLayout(false);
@@ -243,12 +237,41 @@ namespace Cipher {
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void Vigenere_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		this->KeyWord->Enabled = true;
+		this->Shift->Enabled = false;
+		this->Direction->Enabled = false;
 	}
 	private: System::Void Caesar_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+		this->KeyWord->Enabled = false;
+		this->Shift->Enabled = true;
+		this->Direction->Enabled = true;
 	}
+
+	private: System::Boolean KeyWordError(String ^kw) {
+		if (kw->Length == 0) {
+			return true;
+		}
+		for (int i = 0; i < kw->Length; i++) {
+			if (!((int)kw[i] >= 65 && (int)kw[i] <= 90 || (int)kw[i] >= 97 && (int)kw[i] <= 122)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private: System::Void VigenereEncryption() {
+		String ^kw = KeyWord->Text;
+
+		if (KeyWordError(kw)) {
+			VigError^ error = gcnew VigError();
+			error->ShowDialog();
+		}
+	}
+
 	private: System::Void Encrypt_Click(System::Object^  sender, System::EventArgs^  e) {
+		if (this->Vigenere->Checked == true) {
+			VigenereEncryption();
+		}
 	}
-private: System::Void Direction_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
-}
 };
 }

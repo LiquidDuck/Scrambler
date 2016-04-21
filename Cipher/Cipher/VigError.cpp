@@ -1,0 +1,2 @@
+#include "VigError.h"
+

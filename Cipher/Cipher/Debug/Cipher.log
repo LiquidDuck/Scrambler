@@ -1,4 +1,7 @@
 ﻿  MyForm.cpp
+c:\users\anna\desktop\study\эвм\4semester\шифратор\cipher\cipher\MyForm.h(252): warning C4101: j: неиспользованная локальная переменная
+  VigError.cpp
+  Создание кода...
   MyForm.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
-  Cipher.vcxproj -> C:\Users\Антон\Desktop\Cipher\Debug\Cipher.exe
-  Cipher.vcxproj -> C:\Users\Антон\Desktop\Cipher\Debug\Cipher.pdb (Partial PDB)
+  Cipher.vcxproj -> C:\Users\Anna\Desktop\Study\ЭВМ\4semester\Шифратор\Cipher\Debug\Cipher.exe
+  Cipher.vcxproj -> C:\Users\Anna\Desktop\Study\ЭВМ\4semester\Шифратор\Cipher\Debug\Cipher.pdb (Partial PDB)
