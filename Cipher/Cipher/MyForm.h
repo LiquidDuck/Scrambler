@@ -1,6 +1,8 @@
 #pragma once
 #include "VigError.h"
-#include<string>
+#include <string>
+#include <msclr\marshal_cppstd.h>
+#include <iostream>
 
 namespace Cipher {
 
@@ -39,30 +41,16 @@ namespace Cipher {
 		}
 	private: System::Windows::Forms::RadioButton^  Vigenere;
 	private: System::Windows::Forms::TextBox^  KeyWord;
-	protected:
-
 	private: System::Windows::Forms::Label^  label1;
-
-
 	private: System::Windows::Forms::Label^  label2;
-
 	private: System::Windows::Forms::Label^  label3;
 	private: System::Windows::Forms::RadioButton^  Caesar;
-
 	private: System::Windows::Forms::Label^  label4;
-
-
-	private:
-
-
 	private: System::Windows::Forms::ComboBox^  Direction;
 	private: System::Windows::Forms::Button^  Encrypt;
-	private: System::Windows::Forms::TextBox^  Input;
 	private: System::Windows::Forms::TextBox^  Shift;
 	private: System::Windows::Forms::TextBox^  Output;
-
-
-
+	private: System::Windows::Forms::TextBox^  Input;
 
 
 
@@ -88,9 +76,9 @@ namespace Cipher {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->Direction = (gcnew System::Windows::Forms::ComboBox());
 			this->Encrypt = (gcnew System::Windows::Forms::Button());
-			this->Input = (gcnew System::Windows::Forms::TextBox());
 			this->Shift = (gcnew System::Windows::Forms::TextBox());
 			this->Output = (gcnew System::Windows::Forms::TextBox());
+			this->Input = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// Vigenere
@@ -180,15 +168,6 @@ namespace Cipher {
 			this->Encrypt->UseVisualStyleBackColor = true;
 			this->Encrypt->Click += gcnew System::EventHandler(this, &MyForm::Encrypt_Click);
 			// 
-			// Input
-			// 
-			this->Input->Location = System::Drawing::Point(48, 57);
-			this->Input->Multiline = true;
-			this->Input->Name = L"Input";
-			this->Input->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
-			this->Input->Size = System::Drawing::Size(442, 117);
-			this->Input->TabIndex = 3;
-			// 
 			// Shift
 			// 
 			this->Shift->Location = System::Drawing::Point(68, 432);
@@ -206,11 +185,21 @@ namespace Cipher {
 			this->Output->Size = System::Drawing::Size(442, 117);
 			this->Output->TabIndex = 13;
 			// 
+			// Input
+			// 
+			this->Input->Location = System::Drawing::Point(48, 60);
+			this->Input->Multiline = true;
+			this->Input->Name = L"Input";
+			this->Input->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
+			this->Input->Size = System::Drawing::Size(442, 123);
+			this->Input->TabIndex = 14;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(539, 574);
+			this->Controls->Add(this->Input);
 			this->Controls->Add(this->Output);
 			this->Controls->Add(this->Shift);
 			this->Controls->Add(this->Encrypt);
@@ -219,7 +208,6 @@ namespace Cipher {
 			this->Controls->Add(this->Caesar);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->Input);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->KeyWord);
 			this->Controls->Add(this->Vigenere);
@@ -247,29 +235,103 @@ namespace Cipher {
 		this->Direction->Enabled = true;
 	}
 
-	private: System::Boolean KeyWordError(String ^kw) {
-		if (kw->Length == 0) {
+	private: bool KeyWordError(string kw) {
+		if (kw.size() == 0) {
 			return true;
-		}
-		for (int i = 0; i < kw->Length; i++) {
+		} 
+		for (int i = 0; i < kw.size(); i++) {
 			if (!((int)kw[i] >= 65 && (int)kw[i] <= 90 || (int)kw[i] >= 97 && (int)kw[i] <= 122)) {
 				return true;
 			}
-		}
+		} 
 		return false;
 	}
 
-	private: System::Void VigenereEncryption() {
-		String ^kw = KeyWord->Text;
+	const int Alim = 65, Zlim = 90, alim = 97, zlim = 122, alphSize = 26;
+
+	private: char ToBig(char c) {
+		if (c <= Zlim) {
+			return c;
+		}
+		else {
+			return c - 32;
+		}
+	}
+
+	private: char ToSmall(char c) {
+		if (c >= alim) {
+			return c;
+		}
+		else {
+			return c + 32;
+		}
+	}
+
+	private: bool IsSmall(char c) {
+		if (c >= alim && c <= zlim) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	private: bool IsBig(char c) {
+		if (c >= Alim && c <= Zlim) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	private: void VigenereEncryption() {
+		string kw = msclr::interop::marshal_as<string>(KeyWord->Text); 
 
 		if (KeyWordError(kw)) {
 			VigError^ error = gcnew VigError();
 			error->ShowDialog();
+			return;
 		}
+
+		int i, k = 0, shift;
+
+		string res = msclr::interop::marshal_as<string>(Input->Text); 
+		for (i = 0; i < res.size(); i++) {
+			if (IsBig(res[i]) || IsSmall(res[i])) {
+				if (IsBig(res[i])) {
+					shift = ToBig(kw[k]) - Alim;
+					if (res[i] + shift <= Zlim) {
+						res[i] = res[i] + shift;
+					}
+					else {
+						res[i] = res[i] + shift - alphSize;
+					}
+				}
+				else
+					if (IsSmall(res[i])) {
+						shift = ToSmall(kw[k]) - alim;
+						if (res[i] + shift <= zlim) {
+							res[i] = res[i] + shift;
+						}
+						else {
+							res[i] = res[i] + shift - alphSize;
+						}
+					}
+				if (k + 1 == kw.size()) {
+					k = 0;
+				}
+				else {
+					k++;
+				}
+			}
+		}
+
+		Output->Text = gcnew String(res.c_str());
 	}
 
 	private: System::Void Encrypt_Click(System::Object^  sender, System::EventArgs^  e) {
-		if (this->Vigenere->Checked == true) {
+		if (Vigenere->Checked == true) {
 			VigenereEncryption();
 		}
 	}
