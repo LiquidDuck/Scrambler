@@ -166,6 +166,7 @@ namespace Cipher {
 			this->Direction->Name = L"Direction";
 			this->Direction->Size = System::Drawing::Size(91, 28);
 			this->Direction->TabIndex = 10;
+			this->Direction->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::Direction_SelectedIndexChanged);
 			// 
 			// Encrypt
 			// 
@@ -249,10 +250,12 @@ namespace Cipher {
 		this->Direction->Enabled = true;
 	}
 
-	private: bool KeyNumError(string shift) {
+	private: bool CaeserError(string shift) {
 		if (shift.size() == 0) {
 			return true;
 		}
+		if (Direction->SelectedItem != "вправо" && Direction->SelectedItem != "влево")
+			return true;
 		for (int i = 0; i < shift.size(); i++) {
 			if ((int)shift[i] < 48 || (int)shift[i] > 57) {
 				return true;
@@ -261,9 +264,10 @@ namespace Cipher {
 		return false;
 	}
 
+
 	private: void CaeserEncryption() {
 		string shift = msclr::interop::marshal_as<string>(Shift->Text);
-		if (KeyNumError(shift)) {
+		if (CaeserError(shift)) {
 			GICError^ error = gcnew GICError();
 			error->ShowDialog();
 		}
@@ -373,5 +377,8 @@ namespace Cipher {
 		}
 	}
 
+
+private: System::Void Direction_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+}
 };
 }
