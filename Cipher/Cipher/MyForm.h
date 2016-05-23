@@ -271,6 +271,55 @@ namespace Cipher {
 			GICError^ error = gcnew GICError();
 			error->ShowDialog();
 		}
+		string sh = msclr::interop::marshal_as<string>(Shift->Text);
+		int n = stoi(sh);
+		sh = msclr::interop::marshal_as<string>(Input->Text);
+		if (Direction->SelectedItem == "вправо")
+			CaeserRightShift(n,sh);
+		else
+			CaeserLeftShift(n, sh);
+	}
+
+	private: void CaeserRightShift(int n, string sh) {
+		for (int i = 0; i < sh.size(); i++)
+		{
+			if ((int)sh[i] >= 65 && (int)sh[i] <= 90)
+			{
+				if ((int)sh[i] + (n % 26) > 90)
+					sh[i] = sh[i] - (26 - (n % 26));
+				else
+					sh[i] = sh[i] + (n % 26);
+			}
+			if ((int)sh[i] >= 97 && (int)sh[i] <= 122)
+			{
+				if ((int)sh[i] + (n % 26) > 122)
+					sh[i] = sh[i] - (26 - (n % 26));
+				else
+					sh[i] = sh[i] + (n % 26);
+			}
+		}
+		Output->Text = gcnew String(sh.c_str());
+	}
+
+	private: void CaeserLeftShift(int n, string sh) {
+		for (int i = 0; i < sh.size(); i++)
+		{
+			if ((int)sh[i] >= 65 && (int)sh[i] <= 90)
+			{
+				if ((int)sh[i] - (n % 26) < 65)
+					sh[i] = sh[i] + (26 - (n % 26));
+				else
+					sh[i] = sh[i] - (n % 26);
+			}
+			if ((int)sh[i] >= 97 && (int)sh[i] <= 122)
+			{
+				if ((int)sh[i] - (n % 26) < 97)
+					sh[i] = sh[i] + (26 - (n % 26));
+				else
+					sh[i] = sh[i] - (n % 26);
+			}
+		}
+		Output->Text = gcnew String(sh.c_str());
 	}
 
 	private: bool KeyWordError(string kw) {
