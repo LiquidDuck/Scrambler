@@ -270,6 +270,7 @@ namespace Cipher {
 		if (CaeserError(shift)) {
 			GICError^ error = gcnew GICError();
 			error->ShowDialog();
+			return;
 		}
 		string sh = msclr::interop::marshal_as<string>(Shift->Text);
 		int n = stoi(sh);
