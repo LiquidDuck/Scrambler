@@ -284,16 +284,16 @@ namespace Cipher {
 	private: void CaeserRightShift(int n, string sh) {
 		for (int i = 0; i < sh.size(); i++)
 		{
-			if ((int)sh[i] >= 65 && (int)sh[i] <= 90)
+			if ((int)sh[i] >= Alim && (int)sh[i] <= Zlim)
 			{
-				if ((int)sh[i] + (n % 26) > 90)
+				if ((int)sh[i] + (n % 26) > Zlim)
 					sh[i] = sh[i] - (26 - (n % 26));
 				else
 					sh[i] = sh[i] + (n % 26);
 			}
-			if ((int)sh[i] >= 97 && (int)sh[i] <= 122)
+			if ((int)sh[i] >= alim && (int)sh[i] <= zlim)
 			{
-				if ((int)sh[i] + (n % 26) > 122)
+				if ((int)sh[i] + (n % 26) > zlim)
 					sh[i] = sh[i] - (26 - (n % 26));
 				else
 					sh[i] = sh[i] + (n % 26);
@@ -305,16 +305,16 @@ namespace Cipher {
 	private: void CaeserLeftShift(int n, string sh) {
 		for (int i = 0; i < sh.size(); i++)
 		{
-			if ((int)sh[i] >= 65 && (int)sh[i] <= 90)
+			if ((int)sh[i] >= Alim && (int)sh[i] <= Zlim)
 			{
-				if ((int)sh[i] - (n % 26) < 65)
+				if ((int)sh[i] - (n % 26) < Alim)
 					sh[i] = sh[i] + (26 - (n % 26));
 				else
 					sh[i] = sh[i] - (n % 26);
 			}
-			if ((int)sh[i] >= 97 && (int)sh[i] <= 122)
+			if ((int)sh[i] >= alim && (int)sh[i] <= zlim)
 			{
-				if ((int)sh[i] - (n % 26) < 97)
+				if ((int)sh[i] - (n % 26) < alim)
 					sh[i] = sh[i] + (26 - (n % 26));
 				else
 					sh[i] = sh[i] - (n % 26);
