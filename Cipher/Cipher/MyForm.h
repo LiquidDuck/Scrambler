@@ -292,17 +292,17 @@ namespace Cipher {
 		{
 			if ((int)sh[i] >= Alim && (int)sh[i] <= Zlim)
 			{
-				if ((int)sh[i] + (n % 26) > Zlim)
-					sh[i] = sh[i] - (26 - (n % 26));
+				if ((int)sh[i] + (n % alphSize) > Zlim)
+					sh[i] = sh[i] - (alphSize - (n % alphSize));
 				else
-					sh[i] = sh[i] + (n % 26);
+					sh[i] = sh[i] + (n % alphSize);
 			}
 			if ((int)sh[i] >= alim && (int)sh[i] <= zlim)
 			{
-				if ((int)sh[i] + (n % 26) > zlim)
-					sh[i] = sh[i] - (26 - (n % 26));
+				if ((int)sh[i] + (n % alphSize) > zlim)
+					sh[i] = sh[i] - (alphSize - (n % alphSize));
 				else
-					sh[i] = sh[i] + (n % 26);
+					sh[i] = sh[i] + (n % alphSize);
 			}
 		}
 		Output->Text = gcnew String(sh.c_str());
@@ -313,17 +313,17 @@ namespace Cipher {
 		{
 			if ((int)sh[i] >= Alim && (int)sh[i] <= Zlim)
 			{
-				if ((int)sh[i] - (n % 26) < Alim)
-					sh[i] = sh[i] + (26 - (n % 26));
+				if ((int)sh[i] - (n % alphSize) < Alim)
+					sh[i] = sh[i] + (alphSize - (n % alphSize));
 				else
-					sh[i] = sh[i] - (n % 26);
+					sh[i] = sh[i] - (n % alphSize);
 			}
 			if ((int)sh[i] >= alim && (int)sh[i] <= zlim)
 			{
-				if ((int)sh[i] - (n % 26) < alim)
-					sh[i] = sh[i] + (26 - (n % 26));
+				if ((int)sh[i] - (n % alphSize) < alim)
+					sh[i] = sh[i] + (alphSize - (n % alphSize));
 				else
-					sh[i] = sh[i] - (n % 26);
+					sh[i] = sh[i] - (n % alphSize);
 			}
 		}
 		Output->Text = gcnew String(sh.c_str());
