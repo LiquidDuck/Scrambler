@@ -1,9 +1,9 @@
 ﻿  MyForm.cpp
 c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(259): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(285): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(306): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(330): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(388): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(291): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(312): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(336): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\антон\documents\github\scrambler\cipher\cipher\MyForm.h(394): warning C4018: <: несоответствие типов со знаком и без знака
   GICError.obj : /DEBUG:FASTLINK не поддерживается, если присутствует управляемый код; выполняется перезапуск компоновки с /DEBUG:FULL
   Cipher.vcxproj -> C:\Users\Антон\Documents\GitHub\Scrambler\Cipher\Debug\Cipher.exe
   Cipher.vcxproj -> C:\Users\Антон\Documents\GitHub\Scrambler\Cipher\Debug\Cipher.pdb (Partial PDB)

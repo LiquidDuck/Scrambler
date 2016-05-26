@@ -272,13 +272,19 @@ namespace Cipher {
 			error->ShowDialog();
 			return;
 		}
-		string sh = msclr::interop::marshal_as<string>(Shift->Text);
-		int n = stoi(sh);
-		sh = msclr::interop::marshal_as<string>(Input->Text);
-		if (Direction->SelectedItem == "вправо")
-			CaeserRightShift(n,sh);
 		else
-			CaeserLeftShift(n, sh);
+			if (shift.size()>=9) {
+				GICError^ error = gcnew GICError();
+				error->ShowDialog();
+				return;
+			}
+		//string sh = msclr::interop::marshal_as<string>(Shift->Text);
+		int n = stoi(shift);
+		shift = msclr::interop::marshal_as<string>(Input->Text);
+		if (Direction->SelectedItem == "вправо")
+			CaeserRightShift(n,shift);
+		else
+			CaeserLeftShift(n, shift);
 	}
 
 	private: void CaeserRightShift(int n, string sh) {
